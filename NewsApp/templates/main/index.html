@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cyborg/bootstrap.min.css"
+    integrity="sha512-QzwqVdCfEIUhmovYlJ/ET11Uh4MLuvEpwVpTVTRhChwzgfkrQH9BMcDvgwFpi5fMUGVLJAPsEXJVHuODuhmctg=="
+    crossorigin="anonymous" />
+  <title>News App</title>
+</head>
+
+<div class="navbar fixed-top navbar-dark bg-dark">
+  <div class="container">
+    <marquee behavior="alternate" style="color:rgb(69, 107, 247)"><h2>Latest News from the world</h2>
+    </marquee>    
+    <h4 style="color: rgb(0, 208, 255)">News 24/7</h4>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Jump-to-Top</button>
+  </div>
+</div>
+
+<!-- Card for header -->
+<div class="jumbotron" style="text-align: center; margin-top:40px">
+    <marquee behavior="scroll" direction="right">
+
+
+    </marquee>
+</div>
+
+<!-- Main -->
+<div class="container">
+  {% for hl, des, img in mylist %}
+
+  <div class="card border-primary mb-3">
+    <img src="{{ img }}" alt="image">
+  </div>
+  <div class="card border-primary mb-3">
+    <h4><span class="badge badge-primary">Headline:</span></h4>
+    <h5>{{ hl }}{{ value|linebreaks }}</h5>
+    <h4> <span class="badge badge-success">Description:</span></h4>
+    <h5>{{ des }}{{ value|linebreaks }}</h5>
+  </div>
+  {% endfor %}
+
+  </body>
+  <button type="button" onClick="refreshPage()">Close</button>
+<script>
+    // Get the button:
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+</html>
